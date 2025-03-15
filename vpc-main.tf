@@ -5,7 +5,7 @@ resource "aws_vpc" "main" {
   enable_dns_support = true
   enable_dns_hostnames = true
 
-  tags {
+  tags = {
     Name = "main"
   }
 }
@@ -17,7 +17,7 @@ resource "aws_subnet" "subnet1" {
   availability_zone = "${var.availability_zone1}"
 
 
-  tags {
+  tags = {
     Name = "app-subnet-1"
     }
 }
@@ -27,7 +27,7 @@ resource "aws_subnet" "subnet2" {
   availability_zone = "${var.availability_zone2}"
 
 
-  tags {
+  tags = {
     Name = "app-subnet-2"
   }
 }
@@ -37,7 +37,7 @@ resource "aws_subnet" "subnet3" {
   availability_zone = "${var.availability_zone1}"
 
 
-  tags {
+  tags = {
     Name = "elb-subnet-1"
   }
 }
@@ -47,7 +47,7 @@ resource "aws_subnet" "subnet4" {
   availability_zone = "${var.availability_zone2}"
 
 
-  tags {
+  tags = {
     Name = "elb-subnet-2"
   }
 }
@@ -57,7 +57,7 @@ resource "aws_subnet" "subnet5" {
   availability_zone = "${var.availability_zone1}"
 
 
-  tags {
+  tags = {
     Name = "db-subnet-1"
   }
 }
@@ -67,7 +67,7 @@ resource "aws_subnet" "subnet6" {
   availability_zone = "${var.availability_zone2}"
 
 
-  tags {
+  tags = {
     Name = "db-subnet-2"
   }
 }
@@ -77,7 +77,7 @@ resource "aws_subnet" "subnet7" {
   availability_zone = "${var.availability_zone1}"
 
 
-  tags {
+  tags = {
     Name = "nat-subnet-1"
   }
 }
@@ -87,7 +87,7 @@ resource "aws_subnet" "subnet8" {
   availability_zone = "${var.availability_zone2}"
 
 
-  tags {
+  tags = {
     Name = "nat-subnet-2"
   }
 }
@@ -96,7 +96,7 @@ resource "aws_subnet" "subnet8" {
 resource "aws_internet_gateway" "main-igw" {
   vpc_id = "${aws_vpc.main.id}"
 
-  tags {
+  tags = {
     Name = "main-igw"
   }
 }
@@ -109,7 +109,7 @@ resource "aws_nat_gateway" "main-natgw" {
   allocation_id = "${aws_eip.nat.id}"
   subnet_id     = "${aws_subnet.subnet8.id}"
 
-  tags {
+  tags = {
     Name = "main-nat"
   }
 }
@@ -124,7 +124,7 @@ resource "aws_route_table" "main-public-rt" {
     gateway_id = "${aws_internet_gateway.main-igw.id}"
   }
 
-  tags {
+  tags = {
     Name = "main-public-rt"
   }
 }
@@ -136,7 +136,7 @@ resource "aws_route_table" "main-private-rt" {
     gateway_id = "${aws_nat_gateway.main-natgw.id}"
   }
 
-  tags {
+  tags = {
     Name = "main-private-rt"
   }
 }
