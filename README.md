@@ -4,7 +4,7 @@ Prerequiste :
 aws account with access key and secret access key with required permissions
 Terraform should be intall on your device
 
-Open CMD prompt and go to your project directory run belo commands
+Open CMD prompt and go to your project directory run belos commands
 
 
  terraform --version > to check if terraform install or not
